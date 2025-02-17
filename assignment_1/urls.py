@@ -18,13 +18,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.views.generic.base import RedirectView
-from django.http import HttpResponse
 
-def health_check(request):
-    return HttpResponse("OK")
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', RedirectView.as_view(url='polls/', permanent=False)),
     path("polls/", include("polls.urls")),
-    path('health/', health_check, view_name='health_check'),
 ]
