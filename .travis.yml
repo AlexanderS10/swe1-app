@@ -13,7 +13,7 @@ script:
   - coverage run manage.py test polls
   - coverage report
   - coverage xml
-after_success:
+after_script:
   - COVERALLS_REPO_TOKEN=$COVERALLS_TOKEN coveralls
 
 deploy:
