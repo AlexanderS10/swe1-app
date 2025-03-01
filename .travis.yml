@@ -7,14 +7,15 @@ os: linux
 
 install:
   - pip install -r requirements.txt
+  - pip install python-coveralls
 script:
   - black --check .
   - flake8 .
-  - coverage run manage.py test polls
+  - coverage run --source=assignment_1,polls manage.py test polls
   - coverage report
   - coverage xml
-after_script:
-  - COVERALLS_REPO_TOKEN=$COVERALLS_TOKEN coveralls
+after_success:
+  - coveralls
 
 deploy:
   provider: elasticbeanstalk
