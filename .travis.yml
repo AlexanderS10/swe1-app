@@ -7,9 +7,11 @@ os: linux
 
 install:
   - pip install -r requirements.txt
-
+  - pip install pytest-django pytest-cov
 script:
-  - pytest
+  - python -m pytest --cov=polls
+  - coverage report
+  - coverage xml
 
 deploy:
   provider: elasticbeanstalk
