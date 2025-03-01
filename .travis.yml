@@ -2,6 +2,9 @@ language: python
 python:
   - "3.11"
 
+dist: focal
+os: linux
+
 install:
   - pip install -r requirements.txt
 
@@ -15,8 +18,8 @@ deploy:
   region: "us-west-2"
   app: "django-tutorial"
   env: "django-poll"
-  bucket_name: $AWS_S3_BUCKET
+  bucket: $AWS_S3_BUCKET
   bucket_path: "django-poll"
-  skip_cleanup: true
+  cleanup: false
   on:
     branch: main
