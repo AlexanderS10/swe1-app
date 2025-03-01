@@ -9,7 +9,7 @@ install:
   - pip install -r requirements.txt
   - pip install pytest-django pytest-cov
 script:
-  - python -m pytest --cov=polls
+  - coverage run --source=polls manage.py test polls
   - coverage report
   - coverage xml
 
