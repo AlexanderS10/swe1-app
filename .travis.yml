@@ -14,7 +14,7 @@ script:
   - coverage report
   - coverage xml
 after_success:
-  - echo "Token exists: $COVERALLS_TOKEN"
+  - echo $TRAVIS_JOB_ID
   - COVERALLS_REPO_TOKEN=$COVERALLS_TOKEN coveralls --verbose
 
 deploy:
