@@ -1,13 +1,16 @@
 from django.test import TestCase
 from django.utils import timezone
 from django.urls import reverse
-from .models import Choice,Question
+from .models import Question
 import datetime
+
+
 # Create your tests here.
 class QuestionModelTests(TestCase):
     def test_was_published_recently_with_future_question(self):
         """
-        The was_published_recently() function returns flase for the questions that have pub_date is the future
+        The was_published_recently() function returns
+        flase for the questions that have pub_date is the future
         """
         time = timezone.now() + datetime.timedelta(days=30)
         future_question = Question(pub_date=time)
@@ -30,12 +33,14 @@ class QuestionModelTests(TestCase):
         time = timezone.now() - datetime.timedelta(hours=23, minutes=59, seconds=59)
         recent_question = Question(pub_date=time)
         self.assertIs(recent_question.was_published_recently(), True)
+
+
 class QuestionIndexViewTests(TestCase):
     def test_no_questions(self):
         """
         If no questions exist, an appropriate message is displayed.
         """
-        response = self.client.get(reverse('polls:index'))
+        response = self.client.get(reverse("polls:index"))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "No polls are available.")
-        self.assertQuerysetEqual(response.context['latest_question_list'], [])
+        self.assertQuerysetEqual(response.context["latest_question_list"], [])
