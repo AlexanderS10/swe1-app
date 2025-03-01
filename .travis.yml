@@ -10,11 +10,11 @@ install:
 script:
   - black --check .
   - flake8 .
-  - coverage run --source=polls manage.py test polls
+  - coverage run manage.py test polls
   - coverage report
   - coverage xml
 after_success:
-  - coveralls --service=travis-ci
+  - COVERALLS_REPO_TOKEN=$COVERALLS_TOKEN coveralls
 
 deploy:
   provider: elasticbeanstalk
