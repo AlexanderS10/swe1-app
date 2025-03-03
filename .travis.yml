@@ -14,8 +14,7 @@ script:
   - coverage report
   - coverage xml
 after_success:
-  - echo $TRAVIS_JOB_ID
-  - COVERALLS_REPO_TOKEN=$COVERALLS_TOKEN coveralls --verbose
+  - coveralls --service=travis-pro
 
 deploy:
   provider: elasticbeanstalk
